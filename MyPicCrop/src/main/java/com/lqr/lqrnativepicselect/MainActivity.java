@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.json.qiu.photocrop.PhotoCropUtils;
 
 import java.io.File;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnSelectPhoto;
     private TextView mTvPath;
     private TextView mTvUri;
-    private PhotoCropUtils mLqrPhotoSelectUtils;
+    private PhotoCropUtils mPhotoSelectUtils;
     private ImageView mIvPic;
 
     @Override
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         // 1、创建LQRPhotoSelectUtils（一个Activity对应一个LQRPhotoSelectUtils）
-        mLqrPhotoSelectUtils = new PhotoCropUtils(this, new PhotoCropUtils.PhotoSelectListener() {
+        mPhotoSelectUtils = new PhotoCropUtils(this, new PhotoCropUtils.PhotoSelectListener() {
             @Override
             public void onFinish(File outputFile, Uri outputUri) {
                 // 4、当拍照或从图库选取图片成功后回调
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }, true);
 
-//        mLqrPhotoSelectUtils.setAuthorities("com.lqr.lqrnativepicselect.fileprovider");
-//        mLqrPhotoSelectUtils.setImgPath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + String.valueOf(System.currentTimeMillis()) + ".jpg");
+//        mPhotoSelectUtils.setAuthorities("com.lqr.lqrnativepicselect.fileprovider");
+//        mPhotoSelectUtils.setImgPath(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + String.valueOf(System.currentTimeMillis()) + ".jpg");
     }
 
     private void initListener() {
@@ -88,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
     @PermissionSuccess(requestCode = PhotoCropUtils.REQ_TAKE_PHOTO)
     private void takePhoto() {
-        mLqrPhotoSelectUtils.takePhoto();
+        mPhotoSelectUtils.takePhoto();
     }
 
     @PermissionSuccess(requestCode = PhotoCropUtils.REQ_SELECT_PHOTO)
     private void selectPhoto() {
-        mLqrPhotoSelectUtils.selectPhoto();
+        mPhotoSelectUtils.selectPhoto();
     }
 
     @PermissionFail(requestCode = PhotoCropUtils.REQ_TAKE_PHOTO)
@@ -115,6 +116,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // 2、在Activity中的onActivityResult()方法里与LQRPhotoSelectUtils关联
-        mLqrPhotoSelectUtils.attachToActivityForResult(requestCode, resultCode, data);
+        mPhotoSelectUtils.attachToActivityForResult(requestCode, resultCode, data);
     }
 }

@@ -1,1 +1,1 @@
-include ':app', ':PhotoCropUtils'
+include ':MyPicCrop', ':PhotoCropUtils'

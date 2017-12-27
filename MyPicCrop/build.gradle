@@ -32,4 +32,6 @@ dependencies {
     compile 'com.lovedise:permissiongen:0.0.6'
 //    compile project(':library')
 
+    compile 'com.github.ziranzhiqiu:PhotoCrop:2.0'
+
 }
