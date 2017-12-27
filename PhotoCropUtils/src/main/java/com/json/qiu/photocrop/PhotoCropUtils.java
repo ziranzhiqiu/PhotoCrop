@@ -14,7 +14,10 @@ import android.support.v4.content.FileProvider;
 
 import java.io.File;
 
-// 图片选择工具类
+/*
+    Created By JsonQiu 2017/12/27
+    图片选择工具类
+  */
 public class PhotoCropUtils {
 
     public static final int REQ_TAKE_PHOTO = 10001;
